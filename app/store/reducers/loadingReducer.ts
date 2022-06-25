@@ -4,17 +4,17 @@
  */
 import createReducer from 'app/lib/createReducer';
 import * as types from 'app/store/actions/types';
-import { ILoading } from 'app/models/reducers/loading';
+import ILoadingState from 'app/models/reducers/loading';
 
-const initialState: ILoading = {
+const initialState: ILoadingState = {
   isLoginLoading: false,
 };
 
-export const loadingReducer = createReducer(initialState, {
-  [types.LOGIN_ENABLE_LOADER](state: ILoading) {
+export default createReducer(initialState, {
+  [types.LOGIN_ENABLE_LOADER](state: ILoadingState) {
     return { ...state, isLoginLoading: true };
   },
-  [types.LOGIN_DISABLE_LOADER](state: ILoading) {
+  [types.LOGIN_DISABLE_LOADER](state: ILoadingState) {
     return { ...state, isLoginLoading: false };
   },
 });

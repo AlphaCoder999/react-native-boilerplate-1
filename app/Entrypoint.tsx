@@ -7,7 +7,6 @@ import { ActivityIndicator } from 'react-native';
 import { Provider, useSelector } from 'react-redux';
 import { PersistGate } from 'redux-persist/es/integration/react';
 import { Provider as PaperProvider } from 'react-native-paper';
-
 import {
   PaperThemeDefault,
   PaperThemeDark,
@@ -16,16 +15,12 @@ import {
 } from 'app/config/theme-config';
 import Navigator from 'app/navigation';
 import configureStore from 'app/store';
-import { IThemeState } from 'app/models/reducers/theme';
+import IState from './models/reducers/state';
 
 const { persistor, store } = configureStore();
 
-interface IState {
-  themeReducer: IThemeState;
-}
-
 const RootNavigation: React.FC = () => {
-  const isDark = useSelector((state: IState) => state.themeReducer.isDark);
+  const isDark = useSelector((state: IState) => state.theme.isDark);
   const paperTheme = isDark ? PaperThemeDark : PaperThemeDefault;
   const combinedTheme = isDark ? CombinedDarkTheme : CombinedDefaultTheme;
 

@@ -3,12 +3,12 @@
  */
 import createReducer from 'app/lib/createReducer';
 import * as types from 'app/store/actions/types';
-
-import { ILoginState } from 'app/models/reducers/login';
 import {
   ILoginRequestState,
   ILoginResponseState,
 } from 'app/models/actions/login';
+import ILoginState from 'app/models/reducers/login';
+
 const initialState: ILoginState = {
   isLoggedIn: false,
   id: 0,
@@ -16,7 +16,7 @@ const initialState: ILoginState = {
   password: '',
 };
 
-export const loginReducer = createReducer(initialState, {
+export default createReducer(initialState, {
   [types.LOGIN_REQUEST](state: ILoginState, action: ILoginRequestState) {
     return {
       ...state,

@@ -3,16 +3,11 @@ import { View, StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useDispatch, useSelector } from 'react-redux';
 import { Switch } from 'react-native-paper';
-
 import * as themeActions from 'app/store/actions/themeActions';
-import { IThemeState } from 'app/models/reducers/theme';
-
-interface IState {
-  themeReducer: IThemeState;
-}
+import IState from 'app/models/reducers/state';
 
 const ThemeController: React.FC = () => {
-  const isDark = useSelector((state: IState) => state.themeReducer.isDark);
+  const isDark = useSelector((state: IState) => state.theme.isDark);
 
   const dispatch = useDispatch();
   const onToggleTheme = () => dispatch(themeActions.setIsDarkTheme(!isDark));
