@@ -1,35 +1,81 @@
-import React from 'react';
-import { View } from 'react-native';
-import { Text, Button } from 'react-native-paper';
+import React, { useState } from 'react';
+import { Keyboard, ScrollView, View } from 'react-native';
+import { Button, TextInput } from 'react-native-paper';
 import { useDispatch, useSelector } from 'react-redux';
-import * as loginActions from 'app/store/actions/loginActions';
+import { requestLogin } from 'app/store/actions/login';
+import { navigate } from 'app/navigation/navigation-service';
+import { IState } from 'app/models/reducers/state';
 import styles from './styles';
-import NavigationService from 'app/navigation/NavigationService';
-import IState from 'app/models/reducers/state';
+import { screenNames, labels } from '../../constants/strings';
+import { showSnackMessage } from 'app/utils/alerts';
+import validate from '../../constants/regex';
 
-const Login: React.FC = () => {
-  const id = useSelector((state: IState) => state.login.id);
+const LoginScreen: React.FC = () => {
+  const [username, setUsername] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [hidePassword, setHidePassword] = useState<boolean>(true);
+
+  const { isLoginLoading } = useSelector((state: IState) => state.loading);
+
   const dispatch = useDispatch();
-  const onLogin = () => dispatch(loginActions.requestLogin('test', '1234'));
-  const onForgot = () => NavigationService.navigate('ForgotPassword');
+  const onLogin = () => {
+    Keyboard.dismiss();
+    if (validate('USERNAME', username) && validate('PASSWORD', password))
+      dispatch(requestLogin(username, password));
+    else showSnackMessage(labels.invalidCred, true, true);
+  };
+  const onForgot = () => navigate(screenNames.forgotPassword);
 
   return (
-    <View style={styles.container}>
-      <View style={styles.container}>
-        <Text style={styles.login}>Login Status : {id}</Text>
-        <Button icon="login" mode="outlined" onPress={onLogin}>
-          Login
-        </Button>
-        <Button
-          mode="text"
-          style={styles.forgot}
-          labelStyle={styles.labelStyle}
-          onPress={onForgot}>
-          Forgot Password
-        </Button>
+    <ScrollView contentContainerStyle={styles.container}>
+      <View style={styles.inputContainer}>
+        <TextInput
+          style={styles.input}
+          label={labels.username}
+          value={username}
+          onChangeText={setUsername}
+          autoFocus
+          autoCapitalize="none"
+          autoCorrect={false}
+          autoComplete="username"
+        />
+        <TextInput
+          style={styles.input}
+          label={labels.password}
+          value={password}
+          secureTextEntry={hidePassword}
+          onChangeText={setPassword}
+          autoComplete="password"
+          autoCapitalize="none"
+          autoCorrect={false}
+          right={
+            <TextInput.Icon
+              onPress={() => setHidePassword(value => !value)}
+              name={hidePassword ? 'eye' : 'eye-off'}
+            />
+          }
+        />
       </View>
-    </View>
+
+      <Button
+        icon="login"
+        mode="outlined"
+        loading={isLoginLoading}
+        uppercase={false}
+        onPress={onLogin}>
+        {labels.login}
+      </Button>
+
+      <Button
+        mode="text"
+        uppercase={false}
+        style={styles.forgot}
+        labelStyle={styles.labelStyle}
+        onPress={onForgot}>
+        {labels.forgotPassword}
+      </Button>
+    </ScrollView>
   );
 };
 
-export default Login;
+export default LoginScreen;

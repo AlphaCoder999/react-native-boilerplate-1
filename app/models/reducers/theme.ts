@@ -2,4 +2,4 @@ interface IThemeState {
   isDark: boolean;
 }
 
-export default IThemeState;
+export type { IThemeState };

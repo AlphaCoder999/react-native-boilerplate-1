@@ -1,6 +1,6 @@
-import ILoadingState from './loading';
-import ILoginState from './login';
-import IThemeState from './theme';
+import { ILoadingState } from './loading';
+import { ILoginState } from './login';
+import { IThemeState } from './theme';
 
 interface IState {
   login: ILoginState;
@@ -8,4 +8,4 @@ interface IState {
   theme: IThemeState;
 }
 
-export default IState;
+export type { IState };

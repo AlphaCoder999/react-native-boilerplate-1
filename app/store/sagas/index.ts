@@ -1,10 +1,12 @@
 /**
  *  Redux saga class init
  */
-import { takeEvery, all } from 'redux-saga/effects';
-import * as types from '../actions/types';
-import loginSaga from './loginSaga';
+import { all, takeLatest } from 'redux-saga/effects';
+import { LOGIN_REQUEST } from '../actions/types';
+import { loginAsync } from './login';
 
-export default function* watch() {
-  yield all([takeEvery(types.LOGIN_REQUEST, loginSaga)]);
+function* watch() {
+  yield all([takeLatest(LOGIN_REQUEST, loginAsync)]);
 }
+
+export default watch;

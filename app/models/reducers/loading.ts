@@ -2,4 +2,4 @@ interface ILoadingState {
   isLoginLoading: boolean;
 }
 
-export default ILoadingState;
+export type { ILoadingState };

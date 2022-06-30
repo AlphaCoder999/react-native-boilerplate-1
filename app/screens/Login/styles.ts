@@ -1,19 +1,25 @@
 import { StyleSheet } from 'react-native';
+import AppStyles from 'app/config/styles';
+import {
+  heightPercentageToDP as hp,
+  widthPercentageToDP as wp,
+} from 'react-native-responsive-screen';
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
+  container: AppStyles.styles.screen,
+  inputContainer: {
+    width: '100%',
     alignItems: 'center',
-  },
-  login: {
-    padding: 8,
+    paddingBottom: hp(2),
   },
   forgot: {
-    marginTop: 12,
+    marginTop: hp(1),
   },
   labelStyle: {
-    fontSize: 12,
+    fontSize: wp(3),
+  },
+  input: {
+    width: '100%',
   },
 });
 

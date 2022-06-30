@@ -1,13 +1,14 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useDispatch, useSelector } from 'react-redux';
 import { Switch } from 'react-native-paper';
-import * as themeActions from 'app/store/actions/themeActions';
-import IState from 'app/models/reducers/state';
+import * as themeActions from 'app/store/actions/theme';
+import { IState } from 'app/models/reducers/state';
+import styles from './styles';
 
-const ThemeController: React.FC = () => {
-  const isDark = useSelector((state: IState) => state.theme.isDark);
+const ThemeSwitch: React.FC = () => {
+  const { isDark } = useSelector((state: IState) => state.theme);
 
   const dispatch = useDispatch();
   const onToggleTheme = () => dispatch(themeActions.setIsDarkTheme(!isDark));
@@ -22,14 +23,4 @@ const ThemeController: React.FC = () => {
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flexDirection: 'row',
-    justifyContent: 'flex-end',
-    alignItems: 'center',
-    margin: 12,
-  },
-  icon: { marginLeft: 4 },
-});
-
-export default ThemeController;
+export default ThemeSwitch;

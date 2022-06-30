@@ -1,8 +1,8 @@
 /*
  * combines all th existing reducers
  */
-import loading from './loadingReducer';
-import login from './loginReducer';
-import theme from './themeReducer';
+import loading from './loading';
+import login from './login';
+import theme from './theme';
 
 export default { login, loading, theme };

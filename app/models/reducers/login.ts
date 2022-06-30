@@ -1,8 +1,8 @@
 interface ILoginState {
   isLoggedIn: boolean;
-  id: number;
-  username: string;
-  password: string;
+  token: string | null;
+  username: string | null;
+  password: string | null;
 }
 
-export default ILoginState;
+export type { ILoginState };

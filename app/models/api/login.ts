@@ -1,3 +1,5 @@
-export interface ILoginResponse {
-  id: number;
+interface ILoginAPIResponse {
+  token: string;
 }
+
+export type { ILoginAPIResponse };

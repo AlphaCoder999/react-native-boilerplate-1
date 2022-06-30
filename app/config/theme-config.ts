@@ -7,7 +7,7 @@ import {
   DarkTheme as NavigationDarkTheme,
 } from '@react-navigation/native';
 
-export const PaperThemeDefault = {
+const PaperThemeDefault = {
   ...PaperDefaultTheme,
   colors: {
     ...PaperDefaultTheme.colors,
@@ -15,7 +15,7 @@ export const PaperThemeDefault = {
   },
 };
 
-export const PaperThemeDark = {
+const PaperThemeDark = {
   ...PaperDarkTheme,
   colors: {
     ...PaperDarkTheme.colors,
@@ -23,12 +23,12 @@ export const PaperThemeDark = {
   },
 };
 
-export const CombinedDefaultTheme = {
+const CombinedDefaultTheme = {
   ...PaperDefaultTheme,
   ...NavigationDefaultTheme,
 };
 
-export const CombinedDarkTheme = {
+const CombinedDarkTheme = {
   ...PaperDarkTheme,
   ...NavigationDarkTheme,
   colors: {
@@ -37,4 +37,11 @@ export const CombinedDarkTheme = {
     card: '#222222',
     text: '#ffffff',
   },
+};
+
+export {
+  PaperThemeDefault,
+  PaperThemeDark,
+  CombinedDefaultTheme,
+  CombinedDarkTheme,
 };
