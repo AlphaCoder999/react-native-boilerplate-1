@@ -1,5 +1,11 @@
 import React, { useState } from 'react';
-import { Keyboard, ScrollView, View } from 'react-native';
+import {
+  Keyboard,
+  KeyboardAvoidingView,
+  ScrollView,
+  View,
+  Platform,
+} from 'react-native';
 import { Button, TextInput } from 'react-native-paper';
 import { useDispatch, useSelector } from 'react-redux';
 import { requestLogin } from 'app/store/actions/login';
@@ -28,52 +34,54 @@ const LoginScreen: React.FC = () => {
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <View style={styles.inputContainer}>
-        <TextInput
-          style={styles.input}
-          label={labels.username}
-          value={username}
-          onChangeText={setUsername}
-          autoFocus
-          autoCapitalize="none"
-          autoCorrect={false}
-          autoComplete="username"
-        />
-        <TextInput
-          style={styles.input}
-          label={labels.password}
-          value={password}
-          secureTextEntry={hidePassword}
-          onChangeText={setPassword}
-          autoComplete="password"
-          autoCapitalize="none"
-          autoCorrect={false}
-          right={
-            <TextInput.Icon
-              onPress={() => setHidePassword(value => !value)}
-              name={hidePassword ? 'eye' : 'eye-off'}
-            />
-          }
-        />
-      </View>
+      <KeyboardAvoidingView
+        behavior={Platform.OS === 'ios' ? 'position' : 'padding'}>
+        <View style={styles.inputContainer}>
+          <TextInput
+            label={labels.username}
+            value={username}
+            onChangeText={setUsername}
+            autoFocus
+            autoCapitalize="none"
+            autoCorrect={false}
+            autoComplete="username"
+          />
+          <TextInput
+            label={labels.password}
+            value={password}
+            secureTextEntry={hidePassword}
+            onChangeText={setPassword}
+            autoComplete="password"
+            autoCapitalize="none"
+            autoCorrect={false}
+            right={
+              <TextInput.Icon
+                onPress={() => setHidePassword(value => !value)}
+                name={hidePassword ? 'eye' : 'eye-off'}
+              />
+            }
+          />
+        </View>
 
-      <Button
-        icon="login"
-        mode="outlined"
-        loading={isLoginLoading}
-        uppercase={false}
-        onPress={onLogin}>
-        {labels.login}
-      </Button>
-
-      <Button
-        mode="text"
-        uppercase={false}
-        style={styles.forgot}
-        labelStyle={styles.labelStyle}
-        onPress={onForgot}>
-        {labels.forgotPassword}
-      </Button>
+        <View style={styles.buttonContainer}>
+          <Button
+            icon="login"
+            mode="outlined"
+            loading={isLoginLoading}
+            uppercase={false}
+            onPress={onLogin}>
+            {labels.login}
+          </Button>
+          <Button
+            mode="text"
+            uppercase={false}
+            style={styles.forgotButton}
+            labelStyle={styles.label}
+            onPress={onForgot}>
+            {labels.forgotPassword}
+          </Button>
+        </View>
+      </KeyboardAvoidingView>
     </ScrollView>
   );
 };

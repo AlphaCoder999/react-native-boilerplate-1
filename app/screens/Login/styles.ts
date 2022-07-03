@@ -6,20 +6,22 @@ import {
 } from 'react-native-responsive-screen';
 
 const styles = StyleSheet.create({
-  container: AppStyles.styles.screen,
+  container: {
+    ...AppStyles.styles.screen,
+    justifyContent: 'center',
+  },
   inputContainer: {
-    width: '100%',
-    alignItems: 'center',
     paddingBottom: hp(2),
   },
-  forgot: {
+  buttonContainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  forgotButton: {
     marginTop: hp(1),
   },
-  labelStyle: {
+  label: {
     fontSize: wp(3),
-  },
-  input: {
-    width: '100%',
   },
 });
 

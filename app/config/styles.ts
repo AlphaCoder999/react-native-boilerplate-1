@@ -41,9 +41,7 @@ const AppStyles = {
   styles: StyleSheet.create({
     screen: {
       flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-      paddingHorizontal: wp(10),
+      paddingHorizontal: wp(3),
       paddingVertical: hp(2),
     },
   }),
