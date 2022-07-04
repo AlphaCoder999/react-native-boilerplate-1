@@ -3,7 +3,7 @@
  */
 import { put, call, delay } from 'redux-saga/effects';
 import * as loginActions from 'app/store/actions/login';
-import { loginUser } from 'app/services/user-auth';
+import { loginUser } from 'app/services/auth';
 import { labels } from '../../constants/strings';
 import { showSnackMessage } from 'app/utils/alerts';
 import { ILoginRequestAction } from 'app/models/actions/login';
