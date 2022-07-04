@@ -16,8 +16,6 @@ import {
 import Navigator from 'app/navigation';
 import configureStore from 'app/store';
 import { IState } from '../models/reducers/state';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import styles from './styles';
 
 const { persistor, store } = configureStore();
 
@@ -38,13 +36,11 @@ const RootNavigation: React.FC = () => {
 };
 
 const EntryPoint: React.FC = () => (
-  <SafeAreaView style={styles.container}>
-    <Provider store={store}>
-      <PersistGate loading={<ActivityIndicator />} persistor={persistor}>
-        <RootNavigation />
-      </PersistGate>
-    </Provider>
-  </SafeAreaView>
+  <Provider store={store}>
+    <PersistGate loading={<ActivityIndicator />} persistor={persistor}>
+      <RootNavigation />
+    </PersistGate>
+  </Provider>
 );
 
 export default EntryPoint;

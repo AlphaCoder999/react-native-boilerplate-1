@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { ScrollView } from 'react-native';
 import { Button, Text } from 'react-native-paper';
 import { useDispatch, useSelector } from 'react-redux';
 import { logOut } from 'app/store/actions/login';
@@ -7,6 +6,7 @@ import styles from './styles';
 import { labels } from '../../constants/strings';
 import { IState } from 'app/models/reducers/state';
 import useOrientation from '../../hooks/orientation';
+import Screen from 'app/components/screen';
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
@@ -34,8 +34,7 @@ const HomeScreen: React.FC = () => {
   const onLogout = () => dispatch(logOut());
 
   return (
-    <ScrollView
-      contentContainerStyle={[styles.container, responsiveStyles.container]}>
+    <Screen style={[styles.container, responsiveStyles.container]}>
       <Text>Token: {token}</Text>
       <Button
         icon="logout"
@@ -44,7 +43,7 @@ const HomeScreen: React.FC = () => {
         onPress={onLogout}>
         {labels.logout}
       </Button>
-    </ScrollView>
+    </Screen>
   );
 };
 

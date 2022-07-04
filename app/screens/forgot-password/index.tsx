@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { ScrollView } from 'react-native';
 import { Button } from 'react-native-paper';
 import { goBack } from 'app/navigation/navigation-service';
 import styles from './styles';
 import { labels } from '../../constants/strings';
 import useOrientation from '../../hooks/orientation';
+import Screen from 'app/components/screen';
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
@@ -27,8 +27,7 @@ const ForgotPasswordScreen: React.FC = () => {
   );
 
   return (
-    <ScrollView
-      contentContainerStyle={[styles.container, responsiveStyles.container]}>
+    <Screen style={[styles.container, responsiveStyles.container]}>
       <Button
         icon="keyboard-backspace"
         uppercase={false}
@@ -36,7 +35,7 @@ const ForgotPasswordScreen: React.FC = () => {
         onPress={goBack}>
         {labels.goBack}
       </Button>
-    </ScrollView>
+    </Screen>
   );
 };
 

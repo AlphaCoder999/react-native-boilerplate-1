@@ -1,11 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {
-  Keyboard,
-  KeyboardAvoidingView,
-  ScrollView,
-  View,
-  Platform,
-} from 'react-native';
+import { Keyboard, KeyboardAvoidingView, View, Platform } from 'react-native';
 import { Button, TextInput } from 'react-native-paper';
 import { useDispatch, useSelector } from 'react-redux';
 import { requestLogin } from 'app/store/actions/login';
@@ -20,6 +14,7 @@ import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
+import Screen from 'app/components/screen';
 
 const LoginScreen: React.FC = () => {
   const getComputedResponsiveStyles = () => ({
@@ -55,8 +50,7 @@ const LoginScreen: React.FC = () => {
   const onForgot = () => navigate(screenNames.forgotPassword);
 
   return (
-    <ScrollView
-      contentContainerStyle={[styles.container, responsiveStyles.container]}>
+    <Screen style={[styles.container, responsiveStyles.container]}>
       <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'position' : 'padding'}>
         <View style={responsiveStyles.inputContainer}>
@@ -105,7 +99,7 @@ const LoginScreen: React.FC = () => {
           </Button>
         </View>
       </KeyboardAvoidingView>
-    </ScrollView>
+    </Screen>
   );
 };
 
