@@ -3,12 +3,6 @@
  * Provides universal fonts used in the app.
  */
 
-import { StyleSheet } from 'react-native';
-import {
-  heightPercentageToDP as hp,
-  widthPercentageToDP as wp,
-} from 'react-native-responsive-screen';
-
 const AppStyles = {
   colors: {
     COLOR_PRIMARY: '#2ec7ab',
@@ -38,13 +32,6 @@ const AppStyles = {
     // POPPINS_LIGHT: 'Poppins-Light',
     // POPPINS_BOLD: 'Poppins-Bold',
   },
-  styles: StyleSheet.create({
-    screen: {
-      flex: 1,
-      paddingHorizontal: wp(3),
-      paddingVertical: hp(2),
-    },
-  }),
 };
 
 export default AppStyles;

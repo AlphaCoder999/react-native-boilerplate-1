@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Keyboard,
   KeyboardAvoidingView,
@@ -15,11 +15,33 @@ import styles from './styles';
 import { screenNames, labels } from '../../constants/strings';
 import { showSnackMessage } from 'app/utils/alerts';
 import validate from '../../constants/regex';
+import useOrientation from '../../hooks/orientation';
+import {
+  heightPercentageToDP as hp,
+  widthPercentageToDP as wp,
+} from 'react-native-responsive-screen';
 
 const LoginScreen: React.FC = () => {
+  const getComputedResponsiveStyles = () => ({
+    container: { paddingHorizontal: wp(3), paddingVertical: hp(2) },
+    inputContainer: { paddingBottom: hp(2) },
+    forgotButton: { marginTop: hp(1) },
+    label: { fontSize: wp(3) },
+  });
+
   const [username, setUsername] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [hidePassword, setHidePassword] = useState<boolean>(true);
+  const [responsiveStyles, setResponsiveStyles] = useState(
+    getComputedResponsiveStyles(),
+  );
+
+  const { screenOrientation } = useOrientation();
+
+  useEffect(
+    () => setResponsiveStyles(getComputedResponsiveStyles()),
+    [screenOrientation],
+  );
 
   const { isLoginLoading } = useSelector((state: IState) => state.loading);
 
@@ -33,10 +55,11 @@ const LoginScreen: React.FC = () => {
   const onForgot = () => navigate(screenNames.forgotPassword);
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
+    <ScrollView
+      contentContainerStyle={[styles.container, responsiveStyles.container]}>
       <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'position' : 'padding'}>
-        <View style={styles.inputContainer}>
+        <View style={responsiveStyles.inputContainer}>
           <TextInput
             label={labels.username}
             value={username}
@@ -75,8 +98,8 @@ const LoginScreen: React.FC = () => {
           <Button
             mode="text"
             uppercase={false}
-            style={styles.forgotButton}
-            labelStyle={styles.label}
+            style={responsiveStyles.forgotButton}
+            labelStyle={responsiveStyles.label}
             onPress={onForgot}>
             {labels.forgotPassword}
           </Button>
