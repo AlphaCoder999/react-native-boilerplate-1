@@ -1,5 +1,5 @@
-/* Login Reducer
- * handles login states in the app
+/* Auth Reducer
+ * handles auth states in the app
  */
 import { createReducer } from 'app/utils/redux';
 import {
@@ -7,14 +7,14 @@ import {
   LOGIN_REQUEST,
   LOGIN_RESPONSE,
   LOG_OUT,
-} from 'app/store/actions/types';
-import { ILoginState } from 'app/models/reducers/login';
+} from './action-types';
+import { IAuthState } from 'app/models/reducers/auth';
 import {
-  ILoginRequestAction,
-  ILoginSuccessAction,
-} from 'app/models/actions/login';
+  IAuthRequestAction,
+  IAuthSuccessAction,
+} from 'app/models/actions/auth';
 
-const initialState: ILoginState = {
+const initialState: IAuthState = {
   isLoggedIn: false,
   token: null,
   username: null,
@@ -23,8 +23,8 @@ const initialState: ILoginState = {
 
 export default createReducer(initialState, {
   [LOGIN_REQUEST]: (
-    state: ILoginState,
-    { payload: { username, password } }: ILoginRequestAction,
+    state: IAuthState,
+    { payload: { username, password } }: IAuthRequestAction,
   ) => ({
     ...state,
     username,
@@ -32,15 +32,15 @@ export default createReducer(initialState, {
   }),
 
   [LOGIN_RESPONSE]: (
-    state: ILoginState,
-    { payload: { token } }: ILoginSuccessAction,
+    state: IAuthState,
+    { payload: { token } }: IAuthSuccessAction,
   ) => ({
     ...state,
     token,
     isLoggedIn: true,
   }),
 
-  [LOGIN_FAILED]: (state: ILoginState) => ({
+  [LOGIN_FAILED]: (state: IAuthState) => ({
     ...state,
     isLoggedIn: false,
     token: null,
@@ -48,7 +48,7 @@ export default createReducer(initialState, {
     password: null,
   }),
 
-  [LOG_OUT]: (state: ILoginState) => ({
+  [LOG_OUT]: (state: IAuthState) => ({
     ...state,
     isLoggedIn: false,
     token: null,

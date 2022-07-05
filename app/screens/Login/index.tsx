@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Keyboard, KeyboardAvoidingView, View, Platform } from 'react-native';
 import { Button, TextInput } from 'react-native-paper';
 import { useDispatch, useSelector } from 'react-redux';
-import { requestLogin } from 'app/store/actions/login';
 import { navigate } from 'app/navigation/navigation-service';
 import { IState } from 'app/models/reducers/state';
 import styles from './styles';
@@ -15,6 +14,7 @@ import {
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
 import Screen from 'app/components/screen';
+import { requestLogin } from 'app/store/auth/actions';
 
 const LoginScreen: React.FC = () => {
   const getComputedResponsiveStyles = () => ({

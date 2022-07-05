@@ -3,11 +3,8 @@
  * Avoid data persist
  */
 import { createReducer } from 'app/utils/redux';
-import {
-  LOGIN_DISABLE_LOADER,
-  LOGIN_ENABLE_LOADER,
-} from 'app/store/actions/types';
 import { ILoadingState } from 'app/models/reducers/loading';
+import { LOGIN_DISABLE_LOADER, LOGIN_ENABLE_LOADER } from './action-types';
 
 const initialState: ILoadingState = {
   isLoginLoading: false,

@@ -3,7 +3,7 @@
  * Avoid data persist
  */
 import { createReducer } from 'app/utils/redux';
-import { SET_THEME } from 'app/store/actions/types';
+import { SET_THEME } from './action-types';
 import { IThemeSetAction } from 'app/models/actions/theme';
 import { IThemeState } from 'app/models/reducers/theme';
 

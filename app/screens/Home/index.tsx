@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Text } from 'react-native-paper';
 import { useDispatch, useSelector } from 'react-redux';
-import { logOut } from 'app/store/actions/login';
 import styles from './styles';
 import { labels } from '../../constants/strings';
 import { IState } from 'app/models/reducers/state';
@@ -11,6 +10,7 @@ import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
+import { logOut } from 'app/store/auth/actions';
 
 const HomeScreen: React.FC = () => {
   const getComputedResponsiveStyles = () => ({
@@ -21,7 +21,7 @@ const HomeScreen: React.FC = () => {
     getComputedResponsiveStyles(),
   );
 
-  const { token } = useSelector((state: IState) => state.login);
+  const { token } = useSelector((state: IState) => state.auth);
 
   const { screenOrientation } = useOrientation();
 

@@ -20,7 +20,7 @@ interface IProps {
 }
 
 const AuthNavigator = () => {
-  const { isLoggedIn } = useSelector((state: IState) => state.login);
+  const { isLoggedIn } = useSelector((state: IState) => state.auth);
 
   const screenOptions = {
     // When logging out, a pop animation feels intuitive
@@ -67,7 +67,8 @@ const LoggedInNavigator = () => {
 
 const App: React.FC<IProps> = (props: IProps) => {
   const { theme } = props;
-  const { isLoggedIn } = useSelector((state: IState) => state.login);
+  const { isLoggedIn } = useSelector((state: IState) => state.auth);
+
   const screenOptions = {
     // When logging out, a pop animation feels intuitive
     // You can remove this if you want the default 'push' animation

@@ -1,9 +1,9 @@
 import { ILoadingState } from './loading';
-import { ILoginState } from './login';
+import { IAuthState } from './auth';
 import { IThemeState } from './theme';
 
 interface IState {
-  login: ILoginState;
+  auth: IAuthState;
   loading: ILoadingState;
   theme: IThemeState;
 }

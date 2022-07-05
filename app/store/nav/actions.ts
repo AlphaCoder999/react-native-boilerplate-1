@@ -1,8 +1,5 @@
-/*
- * Reducer actions related with navigation
- */
 import { navigate } from 'app/navigation/navigation-service';
-import { screenNames } from '../../constants/strings';
+import { screenNames } from 'app/constants/strings';
 
 const navigateToHome = (params: any) => {
   navigate(screenNames.home, params);

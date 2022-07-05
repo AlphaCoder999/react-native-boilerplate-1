@@ -1,24 +1,23 @@
-/*
- * Reducer actions related with login
- */
 import {
-  LOGIN_DISABLE_LOADER,
-  LOGIN_ENABLE_LOADER,
   LOGIN_FAILED,
   LOGIN_REQUEST,
   LOGIN_RESPONSE,
   LOG_OUT,
-} from './types';
-import { ILoginAPIResponse } from 'app/models/api/login';
+} from './action-types';
 import {
-  ILoginRequestAction,
-  ILoginSuccessAction,
-} from 'app/models/actions/login';
+  LOGIN_DISABLE_LOADER,
+  LOGIN_ENABLE_LOADER,
+} from '../loader/action-types';
+import {
+  IAuthRequestAction,
+  IAuthSuccessAction,
+} from 'app/models/actions/auth';
+import { IAuthAPIResponse } from 'app/models/api/auth';
 
 const requestLogin = (
   username: string,
   password: string,
-): ILoginRequestAction => ({
+): IAuthRequestAction => ({
   type: LOGIN_REQUEST,
   payload: { username, password },
 });
@@ -27,7 +26,7 @@ const onLoginFailure = () => ({
   type: LOGIN_FAILED,
 });
 
-const onLoginSuccess = (response: ILoginAPIResponse): ILoginSuccessAction => ({
+const onLoginSuccess = (response: IAuthAPIResponse): IAuthSuccessAction => ({
   type: LOGIN_RESPONSE,
   payload: response,
 });

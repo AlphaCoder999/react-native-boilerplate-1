@@ -1,16 +1,20 @@
 /* Redux saga class
- * logins the user into the app
  */
 import { put, call, delay } from 'redux-saga/effects';
-import * as loginActions from 'app/store/actions/login';
 import { loginUser } from 'app/services/auth';
 import { labels } from '../../constants/strings';
 import { showSnackMessage } from 'app/utils/alerts';
-import { ILoginRequestAction } from 'app/models/actions/login';
+import { IAuthRequestAction } from 'app/models/actions/auth';
+import {
+  disableLoader,
+  enableLoader,
+  onLoginFailure,
+  onLoginSuccess,
+} from './actions';
 
-function* loginAsync({ payload: { username, password } }: ILoginRequestAction) {
+function* loginAsync({ payload: { username, password } }: IAuthRequestAction) {
   try {
-    yield put(loginActions.enableLoader());
+    yield put(enableLoader());
     /* How to call API */
     // const response = yield call(loginUser, username, password);
 
@@ -24,14 +28,14 @@ function* loginAsync({ payload: { username, password } }: ILoginRequestAction) {
 
     if (!response.success) throw new Error(response.data.error);
 
-    yield put(loginActions.onLoginSuccess(response.data));
+    yield put(onLoginSuccess(response.data));
 
     showSnackMessage(labels.loginSuccessful);
 
     /* no need to call navigate as this is handled by redux store with SwitchNavigator */
     // yield call(navigationActions.navigateToHome);
   } catch (error: any) {
-    yield put(loginActions.onLoginFailure());
+    yield put(onLoginFailure());
 
     showSnackMessage(
       `${labels.loginFailed}: ${error?.message ?? 'Unknown'}`,
@@ -39,7 +43,7 @@ function* loginAsync({ payload: { username, password } }: ILoginRequestAction) {
       true,
     );
   } finally {
-    yield put(loginActions.disableLoader());
+    yield put(disableLoader());
   }
 }
 
