@@ -1,5 +1,5 @@
-import { navigate } from 'app/navigation/navigation-service';
-import { screenNames } from 'app/constants/strings';
+import { navigate } from '@navigation/navigation-service';
+import { screenNames } from '@constants/strings';
 
 const navigateToHome = (params: any) => {
   navigate(screenNames.home, params);

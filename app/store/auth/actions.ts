@@ -3,16 +3,13 @@ import {
   LOGIN_REQUEST,
   LOGIN_RESPONSE,
   LOG_OUT,
-} from './action-types';
+} from '@store/auth/action-types';
 import {
   LOGIN_DISABLE_LOADER,
   LOGIN_ENABLE_LOADER,
-} from '../loader/action-types';
-import {
-  IAuthRequestAction,
-  IAuthSuccessAction,
-} from 'app/models/actions/auth';
-import { IAuthAPIResponse } from 'app/models/api/auth';
+} from '@store/loader/action-types';
+import { IAuthRequestAction, IAuthSuccessAction } from '@models/actions/auth';
+import { IAuthAPIResponse } from '@models/api/auth';
 
 const requestLogin = (
   username: string,

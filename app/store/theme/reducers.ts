@@ -2,10 +2,10 @@
  * Loading reducer made separate for easy blacklisting
  * Avoid data persist
  */
-import { createReducer } from 'app/utils/redux';
+import { createReducer } from '@utils/redux';
 import { SET_THEME } from './action-types';
-import { IThemeSetAction } from 'app/models/actions/theme';
-import { IThemeState } from 'app/models/reducers/theme';
+import { IThemeSetAction } from '@models/actions/theme';
+import { IThemeState } from '@models/reducers/theme';
 
 const initialState: IThemeState = {
   isDark: false,

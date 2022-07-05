@@ -41,16 +41,32 @@
     "baseUrl": "./",
     "typeRoots": ["node_modules/@types", "./app/**"],
     "paths": {
-      "app/assets/*": ["./app/assets/*"],
-      "app/components/*": ["./app/components/*"],
-      "app/config/*": ["./app/config/*"],
-      "app/lib/*": ["./app/lib/*"],
-      "app/models/*": ["./app/models/*"],
-      "app/navigation/*": ["./app/navigation/*"],
-      "app/screens/*": ["./app/screens/*"],
-      "app/services/*": ["./app/services/*"],
-      "app/store/*": ["./app/store/*"],
-      "app/utils/*": ["./app/utils/*"]
+      // "app/assets/*": ["./app/assets/*"],
+      // "app/components/*": ["./app/components/*"],
+      // "app/config/*": ["./app/config/*"],
+      // "app/lib/*": ["./app/lib/*"],
+      // "app/models/*": ["./app/models/*"],
+      // "app/navigation/*": ["./app/navigation/*"],
+      // "app/screens/*": ["./app/screens/*"],
+      // "app/services/*": ["./app/services/*"],
+      // "app/store/*": ["./app/store/*"],
+      // "app/utils/*": ["./app/utils/*"]
+
+      "@app/*": ["./app/*"],
+      "@assets/*": ["./app/assets/*"],
+      "@components/*": ["./app/components/*"],
+      "@config/*": ["./app/config/*"],
+      "@constants/*": ["./app/constants/*"],
+      "@entrypoint": ["./app/entrypoint"],
+      "@hooks/*": ["./app/hooks/*"],
+      "@models/*": ["./app/models/*"],
+      "@navigation": ["./app/navigation"],
+      "@navigation/*": ["./app/navigation/*"],
+      "@screens/*": ["./app/screens/*"],
+      "@services/*": ["./app/services/*"],
+      "@store": ["./app/store"],
+      "@store/*": ["./app/store/*"],
+      "@utils/*": ["./app/utils/*"]
     },
     /* Base directory to resolve non-absolute module names. */
     // "paths": {},                           /* A series of entries which re-map imports to lookup locations relative to the 'baseUrl'. */

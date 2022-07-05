@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Button } from 'react-native-paper';
-import { goBack } from 'app/navigation/navigation-service';
 import styles from './styles';
-import { labels } from '../../constants/strings';
-import useOrientation from '../../hooks/orientation';
-import Screen from 'app/components/screen';
+import { labels } from '@constants/strings';
+import useOrientation from '@hooks/orientation';
+import { goBack } from '@navigation/navigation-service';
+import Screen from '@components/screen';
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,

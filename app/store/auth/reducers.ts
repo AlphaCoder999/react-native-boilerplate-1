@@ -1,18 +1,15 @@
 /* Auth Reducer
  * handles auth states in the app
  */
-import { createReducer } from 'app/utils/redux';
+import { createReducer } from '@utils/redux';
 import {
   LOGIN_FAILED,
   LOGIN_REQUEST,
   LOGIN_RESPONSE,
   LOG_OUT,
-} from './action-types';
-import { IAuthState } from 'app/models/reducers/auth';
-import {
-  IAuthRequestAction,
-  IAuthSuccessAction,
-} from 'app/models/actions/auth';
+} from '@store/auth/action-types';
+import { IAuthState } from '@models/reducers/auth';
+import { IAuthRequestAction, IAuthSuccessAction } from '@models/actions/auth';
 
 const initialState: IAuthState = {
   isLoggedIn: false,

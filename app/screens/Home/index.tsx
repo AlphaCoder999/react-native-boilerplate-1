@@ -2,15 +2,15 @@ import React, { useEffect, useState } from 'react';
 import { Button, Text } from 'react-native-paper';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './styles';
-import { labels } from '../../constants/strings';
-import { IState } from 'app/models/reducers/state';
-import useOrientation from '../../hooks/orientation';
-import Screen from 'app/components/screen';
+import { labels } from '@constants/strings';
+import { IState } from '@models/reducers/state';
+import useOrientation from '@hooks/orientation';
+import Screen from '@components/screen';
+import { logOut } from '@store/auth/actions';
 import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
-import { logOut } from 'app/store/auth/actions';
 
 const HomeScreen: React.FC = () => {
   const getComputedResponsiveStyles = () => ({

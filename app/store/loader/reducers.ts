@@ -2,8 +2,8 @@
  * Loading reducer made separate for easy blacklisting
  * Avoid data persist
  */
-import { createReducer } from 'app/utils/redux';
-import { ILoadingState } from 'app/models/reducers/loading';
+import { createReducer } from '@utils/redux';
+import { ILoadingState } from '@models/reducers/loading';
 import { LOGIN_DISABLE_LOADER, LOGIN_ENABLE_LOADER } from './action-types';
 
 const initialState: ILoadingState = {

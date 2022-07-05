@@ -1,15 +1,15 @@
 import * as React from 'react';
+import { StatusBar, Platform } from 'react-native';
 import { NavigationContainer, Theme } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { useSelector } from 'react-redux';
 import { navigationRef } from './navigation-service';
-import LoginScreen from 'app/screens/login';
-import HomeScreen from 'app/screens/home';
-import ForgotPasswordScreen from 'app/screens/forgot-password';
-import ThemeSwitch from '../components/theme-switch';
-import { StatusBar, Platform } from 'react-native';
-import { IState } from 'app/models/reducers/state';
-import { labels, screenNames, stackNames } from 'app/constants/strings';
+import LoginScreen from '@screens/login';
+import HomeScreen from '@screens/home';
+import ForgotPasswordScreen from '@screens/forgot-password';
+import ThemeSwitch from '@components/theme-switch';
+import { IState } from '@models/reducers/state';
+import { labels, screenNames, stackNames } from '@constants/strings';
 
 const Stack = createStackNavigator();
 const AuthStack = createStackNavigator();

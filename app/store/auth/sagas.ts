@@ -1,10 +1,10 @@
 /* Redux saga class
  */
 import { put, call, delay } from 'redux-saga/effects';
-import { loginUser } from 'app/services/auth';
-import { labels } from '../../constants/strings';
-import { showSnackMessage } from 'app/utils/alerts';
-import { IAuthRequestAction } from 'app/models/actions/auth';
+import { loginUser } from '@services/auth';
+import { labels } from '@constants/strings';
+import { showSnackMessage } from '@utils/alerts';
+import { IAuthRequestAction } from '@models/actions/auth';
 import {
   disableLoader,
   enableLoader,

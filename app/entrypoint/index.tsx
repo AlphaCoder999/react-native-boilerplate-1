@@ -12,10 +12,10 @@ import {
   PaperThemeDark,
   CombinedDefaultTheme,
   CombinedDarkTheme,
-} from 'app/config/theme-config';
-import Navigator from 'app/navigation';
-import configureStore from 'app/store';
-import { IState } from '../models/reducers/state';
+} from '@config/theme-config';
+import Navigator from '@navigation';
+import configureStore from '@store';
+import { IState } from '@models/reducers/state';
 
 const { persistor, store } = configureStore();
 

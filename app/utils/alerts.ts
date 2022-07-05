@@ -1,6 +1,6 @@
 import Snackbar, { SnackbarAction } from 'react-native-snackbar';
-import AppStyles from '../config/styles';
-import { labels } from '../constants/strings';
+import AppStyles from '@config/styles';
+import { labels } from '@constants/strings';
 
 const showSnackMessage = (
   message: string,

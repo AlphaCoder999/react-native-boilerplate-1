@@ -1,4 +1,4 @@
-import { IAuthAPIResponse } from '../api/auth';
+import { IAuthAPIResponse } from '@models/api/auth';
 
 interface IAuthRequestAction {
   type: string;
