@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Text } from 'react-native-paper';
+import { Text } from 'react-native-paper';
 import styles from './styles';
 import { labels } from '@constants/strings';
 import useOrientation from '@hooks/orientation';
@@ -9,13 +9,11 @@ import {
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
 
-const ForgotPasswordScreen: React.FC = ({ navigation, route }) => {
-  const { username } = route.params;
-
+const AboutScreen: React.FC = () => {
   const getComputedResponsiveStyles = () => ({
     container: { paddingHorizontal: wp(3), paddingVertical: hp(2) },
-    buttonText: { fontSize: wp(3.5) },
-    smallText: { marginBottom: hp(2), fontSize: wp(4) },
+    titleText: { fontSize: wp(8), marginBottom: hp(1) },
+    subText: { fontSize: wp(3), width: wp('80%') },
   });
 
   const [responsiveStyles, setResponsiveStyles] = useState(
@@ -31,17 +29,14 @@ const ForgotPasswordScreen: React.FC = ({ navigation, route }) => {
 
   return (
     <Screen style={[styles.container, responsiveStyles.container]}>
-      <Text style={responsiveStyles.smallText}>Reset for user {username}</Text>
-      <Button
-        icon="keyboard-backspace"
-        uppercase={false}
-        mode="outlined"
-        labelStyle={responsiveStyles.buttonText}
-        onPress={navigation.goBack}>
-        {labels.goBack}
-      </Button>
+      <Text style={[styles.titleText, responsiveStyles.titleText]}>
+        {labels.about}
+      </Text>
+      <Text style={[styles.subText, responsiveStyles.subText]}>
+        {labels.aboutContent}
+      </Text>
     </Screen>
   );
 };
 
-export default ForgotPasswordScreen;
+export default AboutScreen;

@@ -11,15 +11,16 @@ const showSnackMessage = (
 ) =>
   Snackbar.show({
     text: message,
-    duration: indefiniteDuration
-      ? Snackbar.LENGTH_INDEFINITE
-      : longerDuration
-      ? Snackbar.LENGTH_LONG
-      : Snackbar.LENGTH_SHORT,
-    backgroundColor: isError
-      ? AppStyles.colors.COLOR_INDIAN_RED
-      : AppStyles.colors.COLOR_LIGHT_ORANGE,
-    // fontFamily: AppStyles.fonts.POPPINS_MEDIUM,
+    duration:
+      Snackbar[
+        indefiniteDuration
+          ? 'LENGTH_INDEFINITE'
+          : longerDuration
+          ? 'LENGTH_LONG'
+          : 'LENGTH_SHORT'
+      ],
+    backgroundColor: AppStyles.colors[isError ? 'INDIAN_RED' : 'LIGHT_ORANGE'],
+    // fontFamily: AppStyles.fonts.POPPINS_MEDIUM, /* NOTE: To add custom font */
     action,
   });
 

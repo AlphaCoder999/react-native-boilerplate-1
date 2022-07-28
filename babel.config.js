@@ -28,7 +28,6 @@ module.exports = {
           '.png',
         ],
         alias: {
-          '@app': './app',
           '@assets': './app/assets',
           '@components': './app/components',
           '@config': './app/config',

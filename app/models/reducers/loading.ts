@@ -1,5 +1,6 @@
 interface ILoadingState {
-  isLoginLoading: boolean;
+  isLoggingIn: boolean;
+  isFetchingNotifications: boolean;
 }
 
 export type { ILoadingState };

@@ -4,19 +4,34 @@
  */
 import { createReducer } from '@utils/redux';
 import { ILoadingState } from '@models/reducers/loading';
-import { LOGIN_DISABLE_LOADER, LOGIN_ENABLE_LOADER } from './action-types';
+import {
+  LOGIN_DISABLE_LOADER,
+  LOGIN_ENABLE_LOADER,
+  NOTIF_ENABLE_LOADER,
+  NOTIF_DISABLE_LOADER,
+} from './action-types';
 
 const initialState: ILoadingState = {
-  isLoginLoading: false,
+  isLoggingIn: false,
+  isFetchingNotifications: false,
 };
 
 export default createReducer(initialState, {
   [LOGIN_ENABLE_LOADER]: (state: ILoadingState) => ({
     ...state,
-    isLoginLoading: true,
+    isLoggingIn: true,
   }),
   [LOGIN_DISABLE_LOADER]: (state: ILoadingState) => ({
     ...state,
-    isLoginLoading: false,
+    isLoggingIn: false,
+  }),
+
+  [NOTIF_ENABLE_LOADER]: (state: ILoadingState) => ({
+    ...state,
+    isFetchingNotifications: true,
+  }),
+  [NOTIF_DISABLE_LOADER]: (state: ILoadingState) => ({
+    ...state,
+    isFetchingNotifications: false,
   }),
 });

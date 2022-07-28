@@ -15,12 +15,12 @@ import {
 function* loginAsync({ payload: { username, password } }: IAuthRequestAction) {
   try {
     yield put(enableLoader());
-    /* How to call API */
+    /* NOTE: How to call API */
     // const response = yield call(loginUser, username, password);
 
-    yield delay(2000); /* Emulating network latency */
+    yield delay(2000); /* NOTE: Emulating network latency */
 
-    /* Mock API response */
+    /* NOTE: Mock API response */
     const response =
       username === 'admin' && password === 'Admin@123'
         ? { success: true, data: { token: 'Xgs3a34uyd234nf6kg' } }
@@ -32,8 +32,8 @@ function* loginAsync({ payload: { username, password } }: IAuthRequestAction) {
 
     showSnackMessage(labels.loginSuccessful);
 
-    /* no need to call navigate as this is handled by redux store with SwitchNavigator */
-    // yield call(navigationActions.navigateToHome);
+    /* NOTE: no need to call navigate as this is handled by redux store with SwitchNavigator */
+    // yield call(navigate(screenNames.home));
   } catch (error: any) {
     yield put(onLoginFailure());
 

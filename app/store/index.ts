@@ -10,7 +10,7 @@ const config = {
   key: 'root',
   storage: AsyncStorage,
   blacklist: ['loading'],
-  debug: true, // to get useful logging
+  debug: true /* NOTE: to get useful logging */,
 };
 
 const middleware = [];

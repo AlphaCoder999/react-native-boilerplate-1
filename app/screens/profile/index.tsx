@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Text } from 'react-native-paper';
+import { Text } from 'react-native-paper';
+import { useSelector } from 'react-redux';
 import styles from './styles';
 import { labels } from '@constants/strings';
+import { IState } from '@models/reducers/state';
 import useOrientation from '@hooks/orientation';
 import Screen from '@components/screen';
 import {
@@ -9,18 +11,17 @@ import {
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
 
-const ForgotPasswordScreen: React.FC = ({ navigation, route }) => {
-  const { username } = route.params;
-
+const ProfileScreen: React.FC = () => {
   const getComputedResponsiveStyles = () => ({
     container: { paddingHorizontal: wp(3), paddingVertical: hp(2) },
-    buttonText: { fontSize: wp(3.5) },
-    smallText: { marginBottom: hp(2), fontSize: wp(4) },
+    titleText: { fontSize: wp(5) },
   });
 
   const [responsiveStyles, setResponsiveStyles] = useState(
     getComputedResponsiveStyles(),
   );
+
+  const { username } = useSelector((state: IState) => state.auth);
 
   const { screenOrientation } = useOrientation();
 
@@ -31,17 +32,11 @@ const ForgotPasswordScreen: React.FC = ({ navigation, route }) => {
 
   return (
     <Screen style={[styles.container, responsiveStyles.container]}>
-      <Text style={responsiveStyles.smallText}>Reset for user {username}</Text>
-      <Button
-        icon="keyboard-backspace"
-        uppercase={false}
-        mode="outlined"
-        labelStyle={responsiveStyles.buttonText}
-        onPress={navigation.goBack}>
-        {labels.goBack}
-      </Button>
+      <Text style={responsiveStyles.titleText}>
+        {labels.welcome} {username}
+      </Text>
     </Screen>
   );
 };
 
-export default ForgotPasswordScreen;
+export default ProfileScreen;

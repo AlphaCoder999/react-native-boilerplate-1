@@ -1,5 +1,5 @@
-import AppStyles from '@config/styles';
 import { StyleSheet } from 'react-native';
+import AppStyles from '@config/styles';
 
 const styles = StyleSheet.create({
   container: {
@@ -7,8 +7,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  helperText: {
+  titleText: {
+    fontWeight: '600',
+  },
+  subText: {
     color: AppStyles.colors.GREY,
+    textAlign: 'center',
   },
 });
 

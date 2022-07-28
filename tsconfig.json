@@ -52,7 +52,6 @@
       // "app/store/*": ["./app/store/*"],
       // "app/utils/*": ["./app/utils/*"]
 
-      "@app/*": ["./app/*"],
       "@assets/*": ["./app/assets/*"],
       "@components/*": ["./app/components/*"],
       "@config/*": ["./app/config/*"],
