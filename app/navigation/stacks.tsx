@@ -6,9 +6,9 @@ import { screenNames, stackNames } from '@constants/strings';
 import { NavigationContainer, Theme } from '@react-navigation/native';
 import AppDrawer from './drawers';
 import ThemeSwitch from '@components/theme-switch';
-import HomeScreen from '@screens/_home';
+import HomeScreen from '@screens/home';
 import ProfileScreen from '@screens/profile';
-import LoginScreen from '@screens/_login';
+import LoginScreen from '@screens/login';
 import ForgotPasswordScreen from '@screens/forgot-password';
 
 const Stack = createStackNavigator();
