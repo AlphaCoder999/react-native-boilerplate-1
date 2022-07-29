@@ -1,6 +1,6 @@
 import React from 'react';
 import { SafeAreaView, ScrollView, ViewStyle } from 'react-native';
-import style from './style';
+import styles from './styles';
 
 interface IProps {
   style?: ViewStyle | ViewStyle[];
@@ -9,7 +9,7 @@ interface IProps {
 
 const Screen: React.FC<IProps> = props => {
   return (
-    <SafeAreaView style={style.container}>
+    <SafeAreaView style={styles.container}>
       <ScrollView contentContainerStyle={props.style}>
         {props.children}
       </ScrollView>
