@@ -1,11 +1,11 @@
 /*
- * platform/application wide metrics for proper styling
+ * Platform/Application wide metrics for proper styling
  */
 import { Dimensions, Platform } from 'react-native';
 
 const { width, height } = Dimensions.get('window');
 
-const metrics = {
+const Metrics = {
   screenWidth: width < height ? width : height,
   screenHeight: width < height ? height : width,
   navBarHeight: Platform.OS === 'ios' ? 54 : 66,
@@ -16,4 +16,4 @@ const metrics = {
     (height === 812 || width === 812),
 };
 
-export default metrics;
+export default Metrics;

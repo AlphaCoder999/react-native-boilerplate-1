@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Text } from 'react-native-paper';
+import { Image } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './styles';
 import { labels, screenNames } from '@constants/strings';
@@ -12,6 +13,7 @@ import {
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
 import { fetchNotifications } from '@store/notif/actions';
+import Images from '@config/images';
 
 const HomeScreen: React.FC = ({ navigation }) => {
   const getComputedResponsiveStyles = () => ({
@@ -20,6 +22,8 @@ const HomeScreen: React.FC = ({ navigation }) => {
     helperText: { fontSize: wp(3) },
     buttonText: { fontSize: wp(3.5) },
     button: { marginVertical: hp(0.5) },
+    imgLogo: { height: hp(17) },
+    imgHome: { size: hp(5) },
   });
 
   const [responsiveStyles, setResponsiveStyles] = useState(
@@ -50,8 +54,17 @@ const HomeScreen: React.FC = ({ navigation }) => {
 
   return (
     <Screen style={[styles.container, responsiveStyles.container]}>
-      <Text style={responsiveStyles.smallText}>Token: {token}</Text>
+      <Image
+        source={Images.react}
+        style={responsiveStyles.imgLogo}
+        resizeMode="contain"
+      />
+      <Images.home
+        height={responsiveStyles.imgHome.size}
+        width={responsiveStyles.imgHome.size}
+      />
 
+      <Text style={responsiveStyles.smallText}>Token: {token}</Text>
       <Text style={[styles.helperText, responsiveStyles.helperText]}>
         ({labels.drawerHelperText})
       </Text>
@@ -64,7 +77,6 @@ const HomeScreen: React.FC = ({ navigation }) => {
         onPress={openDrawer}>
         {labels.openDrawer}
       </Button>
-
       <Button
         uppercase={false}
         mode="outlined"
@@ -73,7 +85,6 @@ const HomeScreen: React.FC = ({ navigation }) => {
         onPress={navigateToProfile}>
         {labels.viewProfile}
       </Button>
-
       <Button
         uppercase={false}
         mode="outlined"
@@ -84,7 +95,6 @@ const HomeScreen: React.FC = ({ navigation }) => {
         onPress={onFetchNotifs}>
         {labels.fetchNotifs}
       </Button>
-
       <Button
         icon="logout"
         uppercase={false}

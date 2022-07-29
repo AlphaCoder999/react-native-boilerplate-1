@@ -12,7 +12,7 @@ import {
   PaperThemeDark,
   CombinedDefaultTheme,
   CombinedDarkTheme,
-} from '@config/theme-config';
+} from '@config/themes';
 import Navigator from '@navigation';
 import configureStore from '@store';
 import { IState } from '@models/reducers/state';

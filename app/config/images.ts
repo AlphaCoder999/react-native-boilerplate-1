@@ -1,9 +1,11 @@
-/* App config for images
+/*
+ * App config for images
  */
-const images = {
-  icons: {
-    // logo: require('@assets/images/icons/logo.png'),
-  },
+import HomeSvg from '@assets/images/home.svg';
+
+const Images = {
+  home: HomeSvg,
+  react: require('@assets/images/react.png'),
 };
 
-export default images;
+export default Images;
