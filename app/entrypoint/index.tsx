@@ -3,7 +3,7 @@
  * Everything starts from the Entry-point
  */
 import React from 'react';
-import { ActivityIndicator, LogBox, Platform, StatusBar } from 'react-native';
+import { ActivityIndicator, LogBox, StatusBar } from 'react-native';
 import { Provider, useSelector } from 'react-redux';
 import { PersistGate } from 'redux-persist/es/integration/react';
 import { Provider as PaperProvider } from 'react-native-paper';
@@ -18,6 +18,7 @@ import configureStore from '@store';
 import { IState } from '@models/reducers/state';
 import 'react-native-gesture-handler';
 import styles from './styles';
+import AppStyles from '@config/styles';
 import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 const { persistor, store } = configureStore();
@@ -28,18 +29,14 @@ LogBox.ignoreLogs([
 
 const RootNavigation: React.FC = () => {
   const { isDark } = useSelector((state: IState) => state.theme);
-  const paperTheme = isDark ? PaperThemeDark : PaperThemeDefault;
-  const combinedTheme = isDark ? CombinedDarkTheme : CombinedDefaultTheme;
-  const statusBarTheme = Platform.select({
-    ios: isDark ? 'light-content' : 'dark-content',
-    android: isDark ? 'dark-content' : 'light-content',
-    default: 'default',
-  });
 
   return (
-    <PaperProvider theme={paperTheme}>
-      <StatusBar barStyle={statusBarTheme} />
-      <Navigator theme={combinedTheme} />
+    <PaperProvider theme={isDark ? PaperThemeDark : PaperThemeDefault}>
+      <StatusBar
+        barStyle={isDark ? 'light-content' : 'dark-content'}
+        backgroundColor={AppStyles.colors[isDark ? 'BLACK' : 'WHITE']}
+      />
+      <Navigator theme={isDark ? CombinedDarkTheme : CombinedDefaultTheme} />
     </PaperProvider>
   );
 };

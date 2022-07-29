@@ -1,4 +1,4 @@
-/* NOTE:
+/*
  * Provides universal color configs used in the app.
  * Provides universal fonts used in the app.
  */

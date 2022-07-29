@@ -50,7 +50,7 @@ const LoginScreen: React.FC = ({ navigation }) => {
   };
 
   /* NOTE: Sample of making use of the navigator's navigation object
-      to navigate to another screen and passing data along */
+      to navigate to another screen and passing data along with it */
   const onForgot = () =>
     navigation.navigate(screenNames.forgotPassword, { username });
 

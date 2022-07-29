@@ -31,7 +31,11 @@ const ForgotPasswordScreen: React.FC = ({ navigation, route }) => {
 
   return (
     <Screen style={[styles.container, responsiveStyles.container]}>
-      <Text style={responsiveStyles.smallText}>Reset for user {username}</Text>
+      {username.trim() !== '' && (
+        <Text style={responsiveStyles.smallText}>
+          Reset for user {username}
+        </Text>
+      )}
       <Button
         icon="keyboard-backspace"
         uppercase={false}

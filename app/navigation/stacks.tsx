@@ -18,7 +18,7 @@ const AuthStack: React.FC = () => {
 
   const screenOptions = {
     /* NOTE: When logging out, a pop animation feels intuitive
-       You can remove this if you want the default 'push' animation */
+        You can remove this if you want the default 'push' animation */
     animationTypeForReplace: isLoggedIn ? 'push' : 'pop',
     headerRight: () => <ThemeSwitch />,
     headerTitleStyle: { fontWeight: 'bold' },
