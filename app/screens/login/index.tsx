@@ -51,7 +51,7 @@ const LoginScreen: React.FC = ({ navigation }) => {
 
   /* NOTE: Sample of making use of the navigator's navigation object
       to navigate to another screen and passing data along with it */
-  const onForgot = () =>
+  const onForgotPress = () =>
     navigation.navigate(screenNames.forgotPassword, { username });
 
   return (
@@ -101,7 +101,7 @@ const LoginScreen: React.FC = ({ navigation }) => {
             uppercase={false}
             style={responsiveStyles.forgotButton}
             labelStyle={responsiveStyles.linkButtonText}
-            onPress={onForgot}>
+            onPress={onForgotPress}>
             {labels.forgotPassword}
           </Button>
         </View>
