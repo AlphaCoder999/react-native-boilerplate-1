@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useReducer } from 'react';
 import { Keyboard, KeyboardAvoidingView, View, Platform } from 'react-native';
 import { Button, TextInput } from 'react-native-paper';
 import { useDispatch, useSelector } from 'react-redux';
-import { IState } from '@models/reducers/state';
 import styles from './styles';
 import { labels, screenNames } from '@constants/strings';
 import validate from '@constants/regex';
@@ -14,54 +13,91 @@ import {
   heightPercentageToDP as hp,
   widthPercentageToDP as wp,
 } from 'react-native-responsive-screen';
+import { IState as IStoreState } from '@models/reducers/state';
+import { IAction, IResponsiveStyles, IState } from './types';
+
+const getComputedResponsiveStyles = (): IResponsiveStyles => ({
+  container: { paddingHorizontal: wp(3), paddingVertical: hp(2) },
+  inputContainer: { paddingBottom: hp(2) },
+  forgotButton: { marginTop: hp(1) },
+  buttonText: { fontSize: wp(3.5) },
+  linkButtonText: { fontSize: wp(2.8) },
+});
+
+const INITIAL_STATE: IState = {
+  username: 'admin',
+  password: 'Admin@123',
+  hidePassword: true,
+  responsiveStyles: getComputedResponsiveStyles(),
+};
+
+const reducer = (state: IState, action: IAction): IState => {
+  switch (action.type) {
+    case 'SET_USERNAME':
+      return { ...state, username: action.payload };
+    case 'SET_PASSWORD':
+      return { ...state, password: action.payload };
+    case 'SET_HIDE_PASSWORD':
+      return { ...state, hidePassword: action.payload };
+    case 'UPDATE_RESPONSIVE_STYLES':
+      return { ...state, responsiveStyles: action.payload };
+    default:
+      throw new Error('Invalid action type ' + action.type);
+  }
+};
 
 const LoginScreen: React.FC = ({ navigation }) => {
-  const getComputedResponsiveStyles = () => ({
-    container: { paddingHorizontal: wp(3), paddingVertical: hp(2) },
-    inputContainer: { paddingBottom: hp(2) },
-    forgotButton: { marginTop: hp(1) },
-    buttonText: { fontSize: wp(3.5) },
-    linkButtonText: { fontSize: wp(2.8) },
-  });
-
-  const [username, setUsername] = useState<string>('admin');
-  const [password, setPassword] = useState<string>('Admin@123');
-  const [hidePassword, setHidePassword] = useState<boolean>(true);
-  const [responsiveStyles, setResponsiveStyles] = useState(
-    getComputedResponsiveStyles(),
-  );
+  const [state, dispatch] = useReducer(reducer, INITIAL_STATE);
 
   const { screenOrientation } = useOrientation();
 
   useEffect(
-    () => setResponsiveStyles(getComputedResponsiveStyles()),
+    () =>
+      dispatch({
+        type: 'UPDATE_RESPONSIVE_STYLES',
+        payload: getComputedResponsiveStyles(),
+      }),
     [screenOrientation],
   );
 
-  const { isLoggingIn } = useSelector((state: IState) => state.loading);
+  const { isLoggingIn } = useSelector((state: IStoreState) => state.loading);
 
-  const dispatch = useDispatch();
+  const storeDispatch = useDispatch();
 
   const onLogin = () => {
     Keyboard.dismiss();
-    if (validate('USERNAME', username) && validate('PASSWORD', password))
-      dispatch(requestLogin(username, password));
+    if (
+      validate('USERNAME', state.username) &&
+      validate('PASSWORD', state.password)
+    )
+      storeDispatch(requestLogin(state.username, state.password));
     else showSnackMessage(labels.invalidCred, true, true);
   };
 
   /* NOTE: Sample of making use of the navigator's navigation object
       to navigate to another screen and passing data along with it */
-  const onForgot = () =>
-    navigation.navigate(screenNames.forgotPassword, { username });
+  const onForgotPress = () =>
+    navigation.navigate(screenNames.forgotPassword, {
+      username: state.username,
+    });
+
+  const setUsername = (value: string) =>
+    dispatch({ type: 'SET_USERNAME', payload: value });
+
+  const setPassword = (value: string) =>
+    dispatch({ type: 'SET_PASSWORD', payload: value });
+
+  const setHidePassword = () =>
+    dispatch({ type: 'SET_HIDE_PASSWORD', payload: !state.hidePassword });
 
   return (
-    <Screen style={[styles.container, responsiveStyles.container]}>
+    <Screen style={[styles.container, state.responsiveStyles.container]}>
       <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'position' : 'padding'}>
-        <View style={responsiveStyles.inputContainer}>
+        <View style={state.responsiveStyles.inputContainer}>
           <TextInput
             label={labels.username}
-            value={username}
+            value={state.username}
             onChangeText={setUsername}
             autoFocus
             autoCapitalize="none"
@@ -70,16 +106,16 @@ const LoginScreen: React.FC = ({ navigation }) => {
           />
           <TextInput
             label={labels.password}
-            value={password}
-            secureTextEntry={hidePassword}
+            value={state.password}
+            secureTextEntry={state.hidePassword}
             onChangeText={setPassword}
             autoComplete="password"
             autoCapitalize="none"
             autoCorrect={false}
             right={
               <TextInput.Icon
-                onPress={() => setHidePassword(value => !value)}
-                name={hidePassword ? 'eye' : 'eye-off'}
+                onPress={setHidePassword}
+                name={state.hidePassword ? 'eye' : 'eye-off'}
               />
             }
           />
@@ -92,16 +128,16 @@ const LoginScreen: React.FC = ({ navigation }) => {
             loading={isLoggingIn}
             disabled={isLoggingIn}
             uppercase={false}
-            labelStyle={responsiveStyles.buttonText}
+            labelStyle={state.responsiveStyles.buttonText}
             onPress={onLogin}>
             {labels.login}
           </Button>
           <Button
             mode="text"
             uppercase={false}
-            style={responsiveStyles.forgotButton}
-            labelStyle={responsiveStyles.linkButtonText}
-            onPress={onForgot}>
+            style={state.responsiveStyles.forgotButton}
+            labelStyle={state.responsiveStyles.linkButtonText}
+            onPress={onForgotPress}>
             {labels.forgotPassword}
           </Button>
         </View>
