@@ -1,6 +1,3 @@
-/**
- *  Redux saga class init
- */
 import { all, takeLatest } from 'redux-saga/effects';
 import { LOGIN_REQUEST } from './auth/action-types';
 import { NOTIF_FETCH_REQUEST } from './notif/action-types';

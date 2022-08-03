@@ -6,4 +6,4 @@ const apiClient = axios.create({
   withCredentials: true,
 });
 
-export { apiClient };
+export default apiClient;

@@ -1,5 +1,3 @@
-/* Redux saga class
- */
 import { put, call, delay } from 'redux-saga/effects';
 import { loginUser } from '@services/auth';
 import { labels } from '@constants/strings';

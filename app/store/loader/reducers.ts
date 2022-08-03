@@ -1,7 +1,3 @@
-/**
- * Loading reducer made separate for easy blacklisting
- * Avoid data persist
- */
 import { createReducer } from '@utils/redux';
 import { ILoadingState } from '@models/reducers/loading';
 import {
@@ -16,7 +12,7 @@ const initialState: ILoadingState = {
   isFetchingNotifications: false,
 };
 
-export default createReducer(initialState, {
+const loaderReducer = createReducer(initialState, {
   [LOGIN_ENABLE_LOADER]: (state: ILoadingState) => ({
     ...state,
     isLoggingIn: true,
@@ -35,3 +31,5 @@ export default createReducer(initialState, {
     isFetchingNotifications: false,
   }),
 });
+
+export default loaderReducer;

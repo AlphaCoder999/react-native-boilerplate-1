@@ -1,4 +1,4 @@
-import { apiClient } from '@services/client';
+import apiClient from '@services/client';
 import ApiConfig from '@config/apis';
 
 const loginUser = (username: string, password: string) => {

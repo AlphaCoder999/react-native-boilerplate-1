@@ -1,6 +1,3 @@
-/* Auth Reducer
- * handles auth states in the app
- */
 import { createReducer } from '@utils/redux';
 import {
   LOGIN_FAILED,
@@ -18,7 +15,7 @@ const initialState: IAuthState = {
   password: null,
 };
 
-export default createReducer(initialState, {
+const authReducer = createReducer(initialState, {
   [LOGIN_REQUEST]: (
     state: IAuthState,
     { payload: { username, password } }: IAuthRequestAction,
@@ -53,3 +50,5 @@ export default createReducer(initialState, {
     password: null,
   }),
 });
+
+export default authReducer;

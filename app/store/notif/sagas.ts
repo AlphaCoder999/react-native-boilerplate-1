@@ -1,5 +1,3 @@
-/* Redux saga class
- */
 import { put, call, delay } from 'redux-saga/effects';
 import { fetchNotifications } from '@services/notif';
 import { labels } from '@constants/strings';

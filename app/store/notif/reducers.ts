@@ -1,6 +1,3 @@
-/* Notification Reducer
- * handles notif states in the app
- */
 import { createReducer } from '@utils/redux';
 import {
   NOTIF_FETCH_REQUEST,
@@ -19,7 +16,7 @@ const initialState: INotifState = {
   list: [],
 };
 
-export default createReducer(initialState, {
+const notificationReducer = createReducer(initialState, {
   [NOTIF_FETCH_REQUEST]: (
     state: INotifState,
     { payload: { userToken } }: INotifFetchRequestAction,
@@ -40,3 +37,5 @@ export default createReducer(initialState, {
 
   [NOTIF_FETCH_ERROR]: (state: INotifState) => ({ ...state }),
 });
+
+export default notificationReducer;
