@@ -17,6 +17,7 @@ const AppStyles = {
     GREY_TRANSP: 'rgba(67, 85, 85, 0.7)',
     INDIAN_RED: 'indianred',
     LIGHT_ORANGE: '#ea6823',
+    PURPLE: 'purple',
   },
   fonts: {
     /* Roboto family */
