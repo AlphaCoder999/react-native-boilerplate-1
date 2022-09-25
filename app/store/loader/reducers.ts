@@ -13,20 +13,20 @@ const initialState: ILoadingState = {
 };
 
 const loaderReducer = createReducer(initialState, {
-  [LOGIN_ENABLE_LOADER]: (state: ILoadingState) => ({
+  [LOGIN_ENABLE_LOADER]: (state: ILoadingState): ILoadingState => ({
     ...state,
     isLoggingIn: true,
   }),
-  [LOGIN_DISABLE_LOADER]: (state: ILoadingState) => ({
+  [LOGIN_DISABLE_LOADER]: (state: ILoadingState): ILoadingState => ({
     ...state,
     isLoggingIn: false,
   }),
 
-  [NOTIF_ENABLE_LOADER]: (state: ILoadingState) => ({
+  [NOTIF_ENABLE_LOADER]: (state: ILoadingState): ILoadingState => ({
     ...state,
     isFetchingNotifications: true,
   }),
-  [NOTIF_DISABLE_LOADER]: (state: ILoadingState) => ({
+  [NOTIF_DISABLE_LOADER]: (state: ILoadingState): ILoadingState => ({
     ...state,
     isFetchingNotifications: false,
   }),

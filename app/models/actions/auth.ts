@@ -13,4 +13,9 @@ interface IAuthSuccessAction {
   payload: IAuthAPIResponse;
 }
 
-export type { IAuthRequestAction, IAuthSuccessAction };
+interface IAuthFailureAction {
+  type: string;
+  payload: string;
+}
+
+export type { IAuthRequestAction, IAuthSuccessAction, IAuthFailureAction };

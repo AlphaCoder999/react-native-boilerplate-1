@@ -6,16 +6,8 @@ import createSagaMiddleware from 'redux-saga';
 import rootReducers from './root-reducers';
 import rootSagas from './root-sagas';
 
-const config = {
-  key: 'root',
-  storage: AsyncStorage,
-  blacklist: ['loading'],
-  debug: true /* NOTE: to get useful logging */,
-};
-
 const middleware = [];
 const sagaMiddleware = createSagaMiddleware();
-
 middleware.push(sagaMiddleware);
 
 if (__DEV__) {
@@ -26,7 +18,15 @@ const composeEnhancers =
   (typeof window !== 'undefined' &&
     window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) ||
   compose;
-const reducers = persistCombineReducers(config, rootReducers);
+const reducers = persistCombineReducers(
+  {
+    key: 'root',
+    storage: AsyncStorage,
+    blacklist: ['loading'],
+    debug: true /* NOTE: to get useful logging */,
+  },
+  rootReducers,
+);
 const enhancers = [applyMiddleware(...middleware)];
 // const initialState = {};
 const persistConfig: any = { enhancers };

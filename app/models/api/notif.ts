@@ -1,5 +1,8 @@
-import { INotifState } from '../reducers/notif';
+import { Notification } from '../reducers/notif';
 
-interface INotifAPIResponse extends INotifState {}
+interface INotifAPIResponse {
+  lastFetchedOn: Date;
+  list: Notification[];
+}
 
 export type { INotifAPIResponse };

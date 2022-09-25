@@ -8,14 +8,13 @@ import {
   NOTIF_DISABLE_LOADER,
 } from '@store/loader/action-types';
 import {
+  INotifFetchFailureAction,
   INotifFetchRequestAction,
   INotifFetchSuccessAction,
 } from '@models/actions/notif';
 import { INotifAPIResponse } from '@models/api/notif';
 
-const fetchNotifications = (
-  userToken: string | null,
-): INotifFetchRequestAction => ({
+const fetchNotifications = (userToken: string): INotifFetchRequestAction => ({
   type: NOTIF_FETCH_REQUEST,
   payload: { userToken },
 });
@@ -27,8 +26,11 @@ const onFetchNotificationSuccess = (
   payload: response,
 });
 
-const onFetchNotificationFailure = () => ({
+const onFetchNotificationFailure = (
+  reason: string,
+): INotifFetchFailureAction => ({
   type: NOTIF_FETCH_ERROR,
+  payload: reason,
 });
 
 const enableLoader = () => ({

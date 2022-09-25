@@ -1,7 +1,5 @@
 import { put, call, delay } from 'redux-saga/effects';
 import { loginUser } from '@services/auth';
-import { labels } from '@constants/strings';
-import { showSnackMessage } from '@utils/alerts';
 import { IAuthRequestAction } from '@models/actions/auth';
 import {
   disableLoader,
@@ -18,28 +16,21 @@ function* loginAsync({ payload: { username, password } }: IAuthRequestAction) {
 
     yield delay(2000); /* NOTE: Emulating network latency */
 
-    /* NOTE: Mock API response */
+    /* NOTE: Dummy API response */
     const response =
       username === 'admin' && password === 'Admin@123'
-        ? { success: true, data: { token: 'Xgs3a34uyd234nf6kg' } }
-        : { success: false, data: { error: 'Invalid credentials' } };
+        ? { success: true, user: { token: 'Xgs3a34uyd234nf6kg' } }
+        : {
+            success: false,
+            error:
+              username === 'admin' ? 'Invalid credentials' : 'No such user',
+          };
 
-    if (!response.success) throw new Error(response.data.error);
+    if (!response.success) throw new Error(response.error);
 
-    yield put(onLoginSuccess(response.data));
-
-    showSnackMessage(labels.loginSuccessful);
-
-    /* NOTE: no need to call navigate as this is handled by redux store with SwitchNavigator */
-    // yield call(navigate(screenNames.home));
+    yield put(onLoginSuccess(response.user!));
   } catch (error: any) {
-    yield put(onLoginFailure());
-
-    showSnackMessage(
-      `${labels.loginFailed}: ${error?.message ?? 'Unknown'}`,
-      true,
-      true,
-    );
+    yield put(onLoginFailure(error.message || 'Unknown reason'));
   } finally {
     yield put(disableLoader());
   }

@@ -4,9 +4,10 @@ type Notification = {
 };
 
 interface INotifState {
-  userToken: string | null;
-  lastFetchedOn: Date | null;
+  userToken?: string;
+  lastFetchedOn?: Date;
   list: Notification[];
+  error?: string;
 }
 
-export type { INotifState };
+export type { INotifState, Notification };

@@ -12,11 +12,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchNotifications } from '@store/notif/actions';
 import { IState } from '@models/reducers/state';
 import { View } from 'react-native';
+import { showSnackMessage } from '@utils/alerts';
 
 const NotificationScreen: React.FC = () => {
   const {
     auth: { token },
-    notif: { list, lastFetchedOn },
+    notif: { list, lastFetchedOn, error },
     loading: { isFetchingNotifications },
   } = useSelector((state: IState) => state);
 
@@ -42,9 +43,14 @@ const NotificationScreen: React.FC = () => {
     [screenOrientation],
   );
 
+  useEffect(() => {
+    if (error)
+      showSnackMessage(`${labels.notifFetchFailed}: ${error}`, true, true);
+  }, [error]);
+
   const dispatch = useDispatch();
 
-  const onFetchNotifs = () => dispatch(fetchNotifications(token));
+  const onFetchNotifs = () => dispatch(fetchNotifications(token!));
 
   return (
     <Screen style={[styles.container, responsiveStyles.container]}>

@@ -1,8 +1,6 @@
 interface IThemeSetAction {
   type: string;
-  payload: {
-    isDark: boolean;
-  };
+  payload: { isDark: boolean };
 }
 
 export type { IThemeSetAction };

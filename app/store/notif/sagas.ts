@@ -1,7 +1,6 @@
 import { put, call, delay } from 'redux-saga/effects';
 import { fetchNotifications } from '@services/notif';
 import { labels } from '@constants/strings';
-import { showSnackMessage } from '@utils/alerts';
 import { INotifFetchRequestAction } from '@models/actions/notif';
 import {
   disableLoader,
@@ -20,32 +19,31 @@ function* fetchNotificationsAsync({
 
     yield delay(2000); /* NOTE: Emulating network latency */
 
-    /* NOTE: Mock API response */
-    const response = userToken
-      ? {
-          success: true,
-          data: {
-            userToken,
-            lastFetchedOn: new Date(),
-            list: new Array(Math.floor(Math.random() * 10 + 1)).fill({
-              id: 'N00x',
-              text: 'This is a dummy notification',
-            }),
-          },
-        }
-      : { success: false, data: { error: 'Invalid user token' } };
+    /* NOTE: Dummy API response */
+    const response =
+      userToken === 'Xgs3a34uyd234nf6kg'
+        ? {
+            success: true,
+            data: {
+              lastFetchedOn: new Date(),
+              list: new Array(Math.floor(Math.random() * 10 + 1))
+                .fill('x')
+                .map((_, index) => ({
+                  id: 'N' + index + 1,
+                  text: 'This is a dummy notification ' + index + 1,
+                })),
+            },
+          }
+        : {
+            success: false,
+            error: 'Invalid user token',
+          };
 
-    if (!response.success) throw new Error(response.data.error);
+    if (!response.success) throw new Error(response.error);
 
-    yield put(onFetchNotificationSuccess(response.data));
+    yield put(onFetchNotificationSuccess(response.data!));
   } catch (error: any) {
-    yield put(onFetchNotificationFailure());
-
-    showSnackMessage(
-      `${labels.notifFetchFailed}: ${error?.message ?? 'Unknown'}`,
-      true,
-      true,
-    );
+    yield put(onFetchNotificationFailure(error.message || 'Unknow reason'));
   } finally {
     yield put(disableLoader());
   }

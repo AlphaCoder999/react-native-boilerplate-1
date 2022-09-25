@@ -2,9 +2,7 @@ import { INotifAPIResponse } from '../api/notif';
 
 interface INotifFetchRequestAction {
   type: string;
-  payload: {
-    userToken: string | null;
-  };
+  payload: { userToken: string };
 }
 
 interface INotifFetchSuccessAction {
@@ -12,4 +10,13 @@ interface INotifFetchSuccessAction {
   payload: INotifAPIResponse;
 }
 
-export type { INotifFetchRequestAction, INotifFetchSuccessAction };
+interface INotifFetchFailureAction {
+  type: string;
+  payload: string;
+}
+
+export type {
+  INotifFetchRequestAction,
+  INotifFetchSuccessAction,
+  INotifFetchFailureAction,
+};

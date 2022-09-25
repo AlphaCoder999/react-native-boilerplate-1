@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { IState } from '@models/reducers/state';
 import styles from './styles';
 import { labels, screenNames } from '@constants/strings';
-import validate from '@constants/regex';
+import { USERNAME_REGEX, PASSWORD_REGEX } from '@constants/regex';
 import { showSnackMessage } from '@utils/alerts';
 import useOrientation from '@hooks/orientation';
 import { requestLogin } from '@store/auth/actions';
@@ -38,13 +38,21 @@ const LoginScreen: React.FC = ({ navigation }) => {
     [screenOrientation],
   );
 
-  const { isLoggingIn } = useSelector((state: IState) => state.loading);
+  const {
+    auth: { error, isLoggedIn },
+    loading: { isLoggingIn },
+  } = useSelector((state: IState) => state);
+
+  useEffect(() => {
+    if (error) showSnackMessage(`${labels.loginFailed}: ${error}`, true, true);
+    else if (isLoggedIn) showSnackMessage(labels.loginSuccessful);
+  }, [error, isLoggedIn]);
 
   const dispatch = useDispatch();
 
   const onLogin = () => {
     Keyboard.dismiss();
-    if (validate('USERNAME', username) && validate('PASSWORD', password))
+    if (USERNAME_REGEX.test(username) && PASSWORD_REGEX.test(password))
       dispatch(requestLogin(username, password));
     else showSnackMessage(labels.invalidCred, true, true);
   };

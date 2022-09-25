@@ -11,10 +11,7 @@ const themeReducer = createReducer(initialState, {
   [SET_THEME]: (
     state: IThemeState,
     { payload: { isDark } }: IThemeSetAction,
-  ) => ({
-    ...state,
-    isDark,
-  }),
+  ) => ({ ...state, isDark }),
 });
 
 export default themeReducer;

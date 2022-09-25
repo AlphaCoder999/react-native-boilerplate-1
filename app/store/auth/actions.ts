@@ -8,7 +8,11 @@ import {
   LOGIN_DISABLE_LOADER,
   LOGIN_ENABLE_LOADER,
 } from '@store/loader/action-types';
-import { IAuthRequestAction, IAuthSuccessAction } from '@models/actions/auth';
+import {
+  IAuthFailureAction,
+  IAuthRequestAction,
+  IAuthSuccessAction,
+} from '@models/actions/auth';
 import { IAuthAPIResponse } from '@models/api/auth';
 
 const requestLogin = (
@@ -19,13 +23,14 @@ const requestLogin = (
   payload: { username, password },
 });
 
-const onLoginFailure = () => ({
-  type: LOGIN_FAILED,
-});
-
 const onLoginSuccess = (response: IAuthAPIResponse): IAuthSuccessAction => ({
   type: LOGIN_RESPONSE,
   payload: response,
+});
+
+const onLoginFailure = (reason: string): IAuthFailureAction => ({
+  type: LOGIN_FAILED,
+  payload: reason,
 });
 
 const enableLoader = () => ({

@@ -48,7 +48,7 @@ const HomeScreen: React.FC = ({ navigation }) => {
 
   const navigateToProfile = () => navigation.navigate(screenNames.profile);
 
-  const onFetchNotifs = () => dispatch(fetchNotifications(token));
+  const onFetchNotifs = () => dispatch(fetchNotifications(token!));
 
   const openDrawer = () => navigation.openDrawer();
 

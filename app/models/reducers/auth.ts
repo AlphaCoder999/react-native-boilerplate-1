@@ -1,8 +1,9 @@
 interface IAuthState {
   isLoggedIn: boolean;
-  token: string | null;
-  username: string | null;
-  password: string | null;
+  token?: string;
+  username?: string;
+  password?: string;
+  error?: string;
 }
 
 export type { IAuthState };
